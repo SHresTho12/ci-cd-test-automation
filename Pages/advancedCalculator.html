@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./CSS/advancedCalculator.css">
+</head>
+
+<body>
+    <div class="calculator">
+        <div class="calculator__display"></div>
+        <button class="calculator__key calculator__key--enter" id="calculate">=</button>
+        <button class="calculator__key calculator__key--operator" onclick="clearScreen()">C</button>
+        <button class="calculator__key" onclick="display('/')">/</button>
+        <button class="calculator__key" onclick=ad"display('7')">7</button>
+        <button class="calculator__key" onclick="display('8')">8</button>
+        <button class="calculator__key" onclick="display('9')">9</button>
+        <button class="calculator__key calculator__key--operator" onclick="display('*')">*</button>
+        <button class="calculator__key" onclick="display('4')">4</button>
+        <button class="calculator__key" onclick="display('5')">5</button>
+        <button class="calculator__key" onclick="display('6')">6</button>
+        <button class="calculator__key calculator__key--operator" onclick="display('-')">-</button>
+        <button class="calculator__key" onclick="display('1')">1</button>
+        <button class="calculator__key" onclick="display('2')">2</button>
+        <button class="calculator__key" onclick="display('3')">3</button>
+        <button class="calculator__key calculator__key--operator" id="add" onclick="display('+')">+</button>
+        <button class="calculator__key" onclick="display('0')">0</button>
+        <button class="calculator__key" onclick="display('.')">.</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

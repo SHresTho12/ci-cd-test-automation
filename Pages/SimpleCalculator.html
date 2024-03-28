@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="./CSS/simpleCalculator.css" />
+</head>
+
+<body>
+
+    <div class="calculator">
+        <h2>Simple Calculator</h2>
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button class="operator" onclick="appendToDisplay('+')">+</button>
+
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button class="operator" onclick="appendToDisplay('-')">-</button>
+
+
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button class="operator" onclick="appendToDisplay('*')">*</button>
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            <button id="clear" onclick="clearDisplay()">C</button>
+            <button class="operator" onclick="appendToDisplay('/')">/</button>
+            <button id="backspace" onclick="backspace()">←</button>
+            <button class="equal" onclick="calculate()">=</button>
+        </div>
+    </div>
+    <script src="../Scripts/basic.js"></script>
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function backspace() {
+            var display = document.getElementById('display');
+            display.value = display.value.slice(0, -1);
+        }
+
+        // Function to perform the calculation
+        function calculate() {
+
+            var display = document.getElementById('display');
+            try {
+                var expression = display.value;
+                var result;
+                // Split the expression into operands and operator
+                var operands = expression.split(/[+\-*\/]/);
+                var operator = expression.match(/[+\-*\/]/)[0];
+                // Convert operands to numbers
+                var num1 = parseFloat(operands[0]);
+                var num2 = parseFloat(operands[1]);
+                // Perform the calculation based on the operator
+                switch (operator) {
+                    case '+':
+                        result = add(num1, num2);
+                        break;
+                    case '-':
+                        result = subtract(num1, num2);
+                        break;
+                    case '*':
+                        result = multiply(num1, num2);
+                        break;
+                    case '/':
+                        if (num2 === 0) {
+                            throw new Error('Division by zero');
+                        }
+                        result = divide(num1, num2);
+                        break;
+                }
+                // Display the result
+                display.value = result;
+            } catch (error) {
+                alert('Invalid expression: ' + error.message);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
