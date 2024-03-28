@@ -8,11 +8,14 @@
 
 <body>
     <div class="calculator">
-        <div class="calculator__display"></div>
-        <button class="calculator__key calculator__key--enter" id="calculate">=</button>
-        <button class="calculator__key calculator__key--operator" onclick="clearScreen()">C</button>
+
+        <div class="calculator__display"> <input type="text" id="display" disabled></div>
+        <button class="calculator__key calculator__key--enter" id="calculate" onclick="calculate()">=</button>
+        <button class="calculator__key calculator__key--operator" onclick="clearDisplay()">C</button>
         <button class="calculator__key" onclick="display('/')">/</button>
-        <button class="calculator__key" onclick=ad"display('7')">7</button>
+        <button class="calculator__key" onclick="display('^')">^</button> <!-- Power operator -->
+        <button class="calculator__key" onclick="display('%')">%</button> <!-- Modulus operator -->
+        <button class="calculator__key" onclick="display('7')">7</button>
         <button class="calculator__key" onclick="display('8')">8</button>
         <button class="calculator__key" onclick="display('9')">9</button>
         <button class="calculator__key calculator__key--operator" onclick="display('*')">*</button>
@@ -23,11 +26,67 @@
         <button class="calculator__key" onclick="display('1')">1</button>
         <button class="calculator__key" onclick="display('2')">2</button>
         <button class="calculator__key" onclick="display('3')">3</button>
-        <button class="calculator__key calculator__key--operator" id="add" onclick="display('+')">+</button>
+        <button class="calculator__key calculator__key--operator" onclick="display('+')">+</button>
         <button class="calculator__key" onclick="display('0')">0</button>
         <button class="calculator__key" onclick="display('.')">.</button>
     </div>
-    <script src="script.js"></script>
+    <script src="../Scripts/basic.js"></script>
+    <script src="../Scripts/advanced.js"></script>
+    <script>
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        // Function to perform the calculation
+        function calculate() {
+            var display = document.getElementById('display');
+            try {
+                var expression = display.value;
+                var result;
+                // Split the expression into operands and operator
+                // Split the expression into operands and operator
+                var operands = expression.split(/[\+\-\*\/%^]/);
+                var operator = expression.match(/[\+\-\*\/%^]/)[0];
+
+                // Convert operands to numbers
+                var num1 = parseFloat(operands[0]);
+                var num2 = parseFloat(operands[1]);
+                // Perform the calculation based on the operator
+                switch (operator) {
+                    case '+':
+                        result = add(num1, num2);
+                        break;
+                    case '-':
+                        result = subtract(num1, num2);
+                        break;
+                    case '*':
+                        result = multiply(num1, num2);
+                        break;
+                    case '/':
+                        if (num2 === 0) {
+                            throw new Error('Division by zero');
+                        }
+                        result = divide(num1, num2);
+                        break;
+                    case '%': // Modulus operator
+                        result = modulo(num1, num2);
+                        break;
+                    case '^': // Power operator
+                        result = pow(num1, num2);
+                        break;
+                }
+                // Display the result
+                display.value = result;
+            } catch (error) {
+                alert('Invalid expression: ' + error.message);
+            }
+        }
+
+        function display(value) {
+            document.getElementById('display').value += value;
+        }
+
+    </script>
 </body>
 
 </html>
