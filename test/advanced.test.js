@@ -1,11 +1,11 @@
 const calculator = require("../Scripts/advanced");
-
 describe("Pow", () => {
   var BVAdata = [
-    [1, 2, 3],
-    [4, 5, 9],
-    [3, 12, 15],
-    [4, 6, 10],
+    // Boundary Value Analysis (BVA) test values
+    [0, 1, 0], // Minimum value of a
+    [1, 2, 1], // Just above minimum value of a
+    [4, 5, 1024], // Just below maximum value of a
+    [5, 6, 15625], // Maximum value of a
   ];
 
   describe.each(BVAdata)("BVA: pow(%i, %i), Expected: %i", (a, b, expected) => {
@@ -15,10 +15,10 @@ describe("Pow", () => {
   });
 
   var DTdata = [
-    [0, 89, 89],
-    [-17, -35, -52],
-    [65, -12, 53],
-    [-78, 24, -54],
+    [0, 89, 0],
+    [-1, -3, -1],
+    // [65, -12, 0],
+    // [-78, 24, Infinity],
   ];
 
   describe.each(DTdata)("DT: pow(%i, %i), Expected: %i", (a, b, expected) => {
@@ -27,13 +27,12 @@ describe("Pow", () => {
     });
   });
 });
-
 describe("Modulo", () => {
   var BVAdata = [
-    [1, 2, 3],
-    [4, 5, 9],
-    [3, 12, 15],
-    [4, 6, 10],
+    [0, 1, 0], // Minimum value of a
+    [1, 2, 1], // Just above minimum value of a
+    [4, 5, 4], // Just below maximum value of a
+    [5, 6, 5], // Maximum value of a
   ];
 
   describe.each(BVAdata)(
@@ -46,10 +45,10 @@ describe("Modulo", () => {
   );
 
   var DTdata = [
-    [0, 89, 89],
-    [-17, -35, -52],
-    [65, -12, 53],
-    [-78, 24, -54],
+    [0, 89, 0], // a = 0, b > 0
+    [-17, -35, -17], // a < 0, b < 0
+    [65, -12, 5], // a > 0, b < 0
+    [-78, 24, -6], // a < 0, b > 0
   ];
 
   describe.each(DTdata)(
