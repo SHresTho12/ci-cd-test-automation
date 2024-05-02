@@ -27,6 +27,25 @@ describe("Pow", () => {
     });
   });
 });
+
+// Test suite for 'calculateSomething' function
+describe("Calculate Something", () => {
+  // Define test data
+  const testData = [
+    [5, 3, 151.66666666666666], // (5+3) + (5-3) + (5*3) + (5/3) + (5^3) = 8 + 2 + 15 + 1.666... + 125 = 151.666...
+    [10, 2, 145], // (10+2) + (10-2) + (10*2) + (10/2) + (10^2) = 12 + 8 + 20 + 5 + 100 = 145
+    [8, 4, 4146], // (8+4) + (8-4) + (8*4) + (8/4) + (8^4) = 12 + 4 + 32 + 2 + 4096 = 4146
+  ];
+
+  // Iterate over test data
+  describe.each(testData)("calculateSomething(%i, %i)", (n, m, expected) => {
+    // Test each scenario
+    test(`should return ${expected}`, () => {
+      expect(calculator.calculateSomething(n, m)).toBe(expected);
+    });
+  });
+});
+
 describe("Modulo", () => {
   var BVAdata = [
     [0, 1, 0], // Minimum value of a
