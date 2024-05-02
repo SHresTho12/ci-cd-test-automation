@@ -42,10 +42,10 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - name: Run Basic Tests
-      run: npm test ..\..\test\basic.test.js
+      run: npm test ./test/basic.test.js
     - name: Run Advanced Tests
       if: ${{ github.event_name == 'push' && github.event.inputs.test_type == 'advanced' }}
-      run: npm test ..\..\test\advanced.test.js
+      run: npm test ./test/advanced.test.js
     
   deploy:
     needs: test
