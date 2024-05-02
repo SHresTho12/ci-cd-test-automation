@@ -20,6 +20,8 @@ To run the tests, you can use the following command:
 For running basic test
 ` npm test .\test\basic.test.js`
 
+For advanced tests
+
 The tests are written with the help of Jest.
 
 ## CI/CD Pipeline
