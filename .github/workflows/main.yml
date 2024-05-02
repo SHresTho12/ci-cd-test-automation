@@ -6,14 +6,7 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
-    inputs:
-      test_type:
-        description: 'Type of tests to run'
-        required: true
-        default: 'basic'
-        options:
-          - 'basic'
-          - 'advanced'
+
 permissions:
   contents: read
   pages: write
