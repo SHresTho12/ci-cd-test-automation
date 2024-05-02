@@ -6,7 +6,14 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
-
+    inputs:
+      test_type:
+        description: 'Type of tests to run'
+        required: true
+        default: 'basic'
+        options:
+          - 'basic'
+          - 'advanced'
 permissions:
   contents: read
   pages: write
@@ -33,7 +40,7 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - name: Run Basic Tests
-      if: ${{ github.event_name == 'push' && github.event.inputs.test_type == 'basic' }}
+      c
       run: npm test .\test\basic.test.js
     - name: Run Advanced Tests
       if: ${{ github.event_name == 'push' && github.event.inputs.test_type == 'advanced' }}
