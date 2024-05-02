@@ -17,8 +17,11 @@ To run the tests, you can use the following command:
 
 `npm test`
 
+For running basic test
+` npm test .\test\basic.test.js`
 
 The tests are written with the help of Jest.
+
 ## CI/CD Pipeline
 
 This project uses a CI/CD pipeline implemented with GitHub Actions. Each push to the `main` branch triggers the following workflow:
